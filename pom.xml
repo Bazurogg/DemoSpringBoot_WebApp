@@ -30,8 +30,7 @@
         <java.version>23</java.version>
         <sonar.organization>bazurogg</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <!--suppress UnresolvedMavenProperty -->
-        <sonar.login>${env.SONAR_TOKEN}</sonar.login>
+        <sonar.login>${secrets.SONAR_TOKEN}</sonar.login>
     </properties>
     <dependencies>
         <dependency>

@@ -36,7 +36,7 @@ jobs:
         run : sudo service mysql start
 
       - name: Create Database from script
-        run: mysql -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} -e "source infra/mysql/dump/springboot.sql
+        run: mysql -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} -e "source infra/mysql/dump/springboot.sql"
 
       - name: Install Chrome for selenium
         uses: browser-actions/setup-chrome@latest
@@ -68,7 +68,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -D sonar.projectKey=Bazurogg_DemoSpringBoot_WebApp
+        run: mvn -B clean install sonar:sonar -D sonar.organization=fabulous-dev -D sonar.projectKey=Bazurogg_DemoSpringBoot_WebApp
 
       - name: Charging artefact
         uses: actions/upload-artifact@v4
