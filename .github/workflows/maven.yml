@@ -67,7 +67,7 @@ jobs:
 
       - name: Build jar and analyze SonarCloud
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B clean install sonar:sonar -D sonar.organization=bazurogg -D sonar.projectKey=Bazurogg_DemoSpringBoot_WebApp -D sonar.login=${{ secrets.SONAR_TOKEN }}
 
