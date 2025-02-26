@@ -17,5 +17,10 @@ pipeline {
                 }
             }
         }
+        stage('Build Maven') {
+            steps {
+                bat 'mvn clean package'
+            }
+        }
     }
 }
