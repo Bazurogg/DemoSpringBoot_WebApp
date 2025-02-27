@@ -3,7 +3,6 @@ on:
   push:
     branches: [master]
     paths:
-      #Pour éviter de reconstruiresi on modifie un fichier autre que dans src
       -  'src/**'
       -  '.github/workflows/maven.yml'
   pull_request:
@@ -18,7 +17,6 @@ jobs:
     name: initworkflow
     runs-on: ubuntu-latest
     steps:
-      #message informatif
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub !"
       - run: echo "The name fo your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
@@ -28,21 +26,24 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - init-workflow
+    env:
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Start MySQL
-        run : sudo service mysql start
+        run: sudo service mysql start
 
       - name: Create Database from script
-        run: mysql -h 127.0.0.1 -u ${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} springboot < mysql/script/db_springboot_api.sql
+        run: mysql -u ${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} springboot < mysql/script/db_springboot_api.sql
 
       - name: Install Chrome for selenium
         uses: browser-actions/setup-chrome@latest
 
-      - name: run Chrome Browser for version control
+      - name: Run Chrome Browser for version control
         run: chrome --version
 
       - name: Set up JDK 17
