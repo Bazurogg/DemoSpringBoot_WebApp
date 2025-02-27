@@ -37,6 +37,10 @@ jobs:
       - name: Start MySQL
         run: sudo service mysql start
 
+      - name: Grant MySQL privileges
+        run: |
+          mysql -h 127.0.0.1 -u root -p${{ secrets.DB_PASSWORD }} -e "GRANT ALL PRIVILEGES ON *.* TO '${{ secrets.DB_USER }}'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}'; FLUSH PRIVILEGES;"
+
       - name: Create Database from script
         run: mysql -h 127.0.0.1 -u ${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} springboot < mysql/script/db_springboot_api.sql
 
