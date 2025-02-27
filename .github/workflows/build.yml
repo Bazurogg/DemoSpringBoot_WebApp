@@ -1,4 +1,5 @@
 name: SonarQube
+run-name: ${{ github.actor }} SonarQube Review
 on:
   push:
     branches:

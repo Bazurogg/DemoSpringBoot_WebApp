@@ -1,4 +1,5 @@
 name: WebApp_CI
+run-name: ${{ github.actor }} My SpringBoot WebApp CI
 on:
   push:
     branches: [master]
