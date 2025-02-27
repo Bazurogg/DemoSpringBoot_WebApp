@@ -38,16 +38,8 @@ jobs:
       - name: Start MySQL
         run: sudo service mysql start
 
-      - name: Grant MySQL privileges (as root)
-        run: |
-          mysql -h 127.0.0.1 -u root -p${{ secrets.DB_PASSWORD }} -e "GRANT ALL PRIVILEGES ON *.* TO '${{ secrets.DB_USER }}'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}'; FLUSH PRIVILEGES;"
-
       - name: Create Database from script
-        run: mysql -h 127.0.0.1 -u ${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} springboot < mysql/script/db_springboot_api.sql
-
-      - name: Check MySQL error log
-        if: failure()
-        run: sudo tail -n 50 /var/log/mysql/error.log
+        run: mysql -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} springboot < mysql/script/db_springboot_api.sql
 
       - name: Install Chrome for selenium
         uses: browser-actions/setup-chrome@latest
