@@ -82,4 +82,3 @@ jobs:
 
       # message de fin indiquant que tout s'est bien passé
       - run: echo "This job's status is ${{ job.status }}."
-
