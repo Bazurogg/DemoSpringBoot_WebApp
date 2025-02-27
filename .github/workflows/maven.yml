@@ -1,3 +1,4 @@
+name: WebApp_CI
 on:
   push:
     branches: [master]
