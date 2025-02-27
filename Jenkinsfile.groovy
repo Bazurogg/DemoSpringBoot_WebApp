@@ -53,5 +53,16 @@ pipeline {
                 }
             }
         }
+
+        // déploiement du multi container avec docker compose
+        stage('Deploy with Docker Compose') {
+            steps {
+                // initialise le conteneur docker
+                script {
+                    // construit les services
+                    bat 'docker-compose up -d --build --force-recreate --remove-orphans'
+                }
+            }
+        }
     }
 }
