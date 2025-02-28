@@ -9,7 +9,7 @@ CREATE TABLE `Person` (
   PRIMARY KEY (`id`)
 ) AUTO_INCREMENT=1;
 
-INSERT INTO `Person`
+INSERT INTO `Person` (id, Lastname, Firstname)
 VALUES
     (1, "Hyde", "Jemima"),
     (2, "Thornton", "Adele"),
