@@ -6,10 +6,10 @@ services:
     container_name: mysql-container
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: groot
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: springboot
       MYSQL_USER: root
-      MYSQL_PASSWORD: groot
+      MYSQL_PASSWORD: root
     ports:
       - "3307:3306"
     volumes:
