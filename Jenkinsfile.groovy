@@ -80,7 +80,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
-                        docker.image('bazurogg/springbootapi2025:latest').push()
+                        docker.image('bazurogg/apispringboot2025:latest').push()
                     }
                 }
             }
