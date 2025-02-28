@@ -11,7 +11,7 @@ CREATE TABLE `Person` (
   PRIMARY KEY (`id`)
 ) AUTO_INCREMENT=1;
 
-INSERT INTO `Person` (`Lastname`,`Firstname`)
+INSERT INTO `Person`
 VALUES
     (1, "Hyde", "Jemima"),
     (2, "Thornton", "Adele"),
