@@ -29,15 +29,6 @@ pipeline {
             }
         }
 
-        stage('Git Checkout - API') {
-            steps {
-                script {
-                    git branch: 'master',
-                            credentialsId: 'Github Classic Token',
-                            url: 'https://github.com/Bazurogg/DemoSpringBoot_API'
-                }
-            }
-        }
 
         stage('Verify Workspace') {
             steps {
@@ -61,14 +52,6 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image - API') {
-            steps {
-                script {
-                    docker.build('bazurogg/apispringboot2025:latest', '-f Dockerfile .')
-                }
-            }
-        }
-
         // push de l'image dans le dockerHub
         stage('Push to Docker Hub - WebApp') {
             steps {
@@ -79,16 +62,6 @@ pipeline {
                      docker.withRegistry('', registryCredential) {
                          //".push()" Envoie de l'image Docker vers le registre spécifié
                         docker.image('bazurogg/webspringboot2025:latest').push()
-                    }
-                }
-            }
-        }
-
-        stage('Push to Docker Hub - API') {
-            steps {
-                script {
-                    docker.withRegistry('', registryCredential) {
-                        docker.image('bazurogg/apispringboot2025:latest').push()
                     }
                 }
             }
