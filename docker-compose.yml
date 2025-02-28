@@ -1,44 +1,53 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  mysql:
+  database:
     image: mysql:8
-    container_name: mysql_db
+    container_name: mysql-container
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: groot
       MYSQL_DATABASE: springboot
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - monrezo
 
   api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    container_name: api_service
+    image: bazurogg/apispringboot2025:latest
+    container_name: api-container
     restart: always
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/springboot
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-    ports:
-      - "8080:8080"
     depends_on:
-      - mysql
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/springboot
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: groot
+    ports:
+      - "9000:9000"
+    networks:
+      - monrezo
 
   webapp:
-    # Utilisation de l'image Docker Hub push par Jenkins
     image: bazurogg/webspringboot2025:latest
-    container_name: webapp_service
+    container_name: webapp-container
     restart: always
-    ports:
-      - "3000:3000"
     depends_on:
       - api
+    environment:
+      API_BASE_URL: http://api:9000
+    ports:
+      - "9090:9090"
+    networks:
+      - monrezo
 
 volumes:
   mysql_data:
+
+networks:
+  monrezo:
+    driver: bridge
