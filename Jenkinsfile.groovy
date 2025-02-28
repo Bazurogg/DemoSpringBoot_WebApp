@@ -92,7 +92,7 @@ pipeline {
                 // initialise le conteneur docker
                 script {
                     // construit les services
-                    bat 'docker-compose up -d --build --force-recreate --remove-orphans'
+                    bat 'docker-compose.yml up -d --build --force-recreate --remove-orphans'
                 }
             }
         }
