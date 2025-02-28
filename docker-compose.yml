@@ -8,7 +8,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: springboot
-      MYSQL_PASSWORD: groot
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: groot
     ports:
       - "3307:3306"
     volumes:
@@ -26,7 +27,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/springboot
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: groot
+      SPRING_DATASOURCE_PASSWORD: root
     ports:
       - "9000:9000"
     networks:
