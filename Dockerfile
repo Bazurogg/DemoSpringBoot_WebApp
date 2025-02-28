@@ -13,4 +13,4 @@ WORKDIR /app
 COPY target/DemoSpringBoot_WebApp-0.0.1-SNAPSHOT.jar /app/DemoSpringBoot_WebApp-0.0.1-SNAPSHOT.jar
 
 # Démarrer l'application Spring Boot
-CMD ["java", "-jar", "TonApplicationWeb-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "DemoSpringBoot_WebApp-0.0.1-SNAPSHOT.jar"]
