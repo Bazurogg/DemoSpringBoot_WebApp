@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS springboot;
-
-use springboot;
-
-DROP TABLE IF EXISTS `Person`;
+-- CREATE DATABASE IF NOT EXISTS springboot;
+--
+-- use springboot;
+--
+-- DROP TABLE IF EXISTS `Person`;
 
 CREATE TABLE `Person` (
   `id` int unsigned NOT NULL auto_increment,
