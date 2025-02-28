@@ -39,6 +39,14 @@ pipeline {
             }
         }
 
+        stage('Verify Workspace') {
+            steps {
+                script {
+                    bat 'dir'
+                }
+            }
+        }
+
         stage('Build Maven - WebApp') {
             steps {
                 bat 'mvn clean package'
