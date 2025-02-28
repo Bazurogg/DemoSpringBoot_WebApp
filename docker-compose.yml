@@ -13,6 +13,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
+#      on indique en spécifiant le fichier exact pour la persisitance des données de la base de données
       - ./mysql/data:/var/lib/mysql
       - ./mysql/script/db_springboot_api.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
